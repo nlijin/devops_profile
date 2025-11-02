@@ -2,7 +2,7 @@
   "name": "devops-portfolio-lijin",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://nlijin.github.io/devops-portfolio", 
+  "homepage": "https://nlijin.github.io/devops_profile",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -16,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^5.1.0",
     "autoprefixer": "^10.4.19",
     "gh-pages": "^6.3.0",
     "postcss": "^8.4.33",

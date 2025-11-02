@@ -6,7 +6,7 @@ import { profile } from '../data/profile'
 export default function Hero() {
   return (
     <section className="flex flex-col items-center justify-center text-center min-h-screen bg-gradient-to-b from-slate-900 to-black px-6 relative overflow-hidden">
-      
+
       {/* Name */}
       <motion.h1
         initial={{ opacity: 0, y: 20 }}
@@ -88,6 +88,17 @@ export default function Hero() {
               />
             </svg>
             GitHub
+          </a>
+        )}
+        {/* Portfolio */}
+        {profile.portfolio && (
+          <a
+            href={profile.portfolio}
+            target="_blank"
+            rel="noreferrer"
+            className="flex items-center gap-2 px-5 py-2.5 border border-cyan-400 rounded-xl text-cyan-400 font-medium hover:bg-cyan-400 hover:text-black transition-all duration-300"
+          >
+            🌐 Portfolio
           </a>
         )}
 

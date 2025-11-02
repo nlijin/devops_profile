@@ -1,10 +1,11 @@
 export const profile = {
-    name: 'Lijin Raj. N',
-    title: 'Senior DevOps Engineer',
-    email: 'nlijinraj@gmail.com',
-    phone: '+91 9663377973',
-    linkedin: 'https://www.linkedin.com/in/lijin-raj/',
-    github: 'https://github.com/nlijin'
+  name: 'Lijin Raj. N',
+  title: 'Senior DevOps Engineer',
+  email: 'nlijinraj@gmail.com',
+  phone: '+91 9663377973',
+  linkedin: 'https://www.linkedin.com/in/lijin-raj/',
+  github: 'https://github.com/nlijin',
+  portfolio: 'https://nlijin.github.io/devops_profile/'
 }
 
 
