@@ -17,6 +17,6 @@ function copyLastUpdate() {
 }
 
 export default defineConfig({
-  plugins: [react(), copyLastUpdate()],
-  base: '/devops_profile/', // your GitHub repo name
+  plugins: [react()],
+  base: '/devops_profile/',
 })
