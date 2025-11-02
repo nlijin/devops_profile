@@ -2,7 +2,7 @@ name: Auto Update and Deploy
 
 on:
   schedule:
-    - cron: '0 5 * * *'  # Runs daily at 05:00 UTC
+    - cron: "0 5 * * *" # runs daily at 10:30 AM IST
   workflow_dispatch:
 
 jobs:
@@ -12,37 +12,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Clean old gh-pages cache
+        run: |
+          rm -rf node_modules/.cache/gh-pages
+          rm -f .gitmodules
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          persist-credentials: false  # we'll manually push
+          node-version: 18
 
-      - name: Configure Git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Make a small change
-        run: |
-          mkdir -p public
-          echo "Last updated: $(date -u)" > public/last-update.txt
-
-      - name: Commit and Push changes
-        env:
-          TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: main
-        run: |
-          git add public/last-update.txt
-          git commit -m "Automated daily update [skip ci]" || echo "No changes to commit"
-          git branch
-          git status
-          git push "https://x-access-token:${TOKEN}@github.com/${{ github.repository }}.git" HEAD:${BRANCH}
-
-      - name: Install and Build
-        run: |
-          npm ci
-          npm run build
+      - name: Build project
+        run: npm run build
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          npm run deploy
