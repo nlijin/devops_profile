@@ -1,8 +1,22 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { resolve } from 'path'
+import { copyFileSync } from 'fs'
 
-// https://vitejs.dev/config/
+// Copy static file during build
+function copyLastUpdate() {
+  return {
+    name: 'copy-last-update',
+    closeBundle() {
+      copyFileSync(
+        resolve(__dirname, 'last-update.txt'),
+        resolve(__dirname, 'dist/last-update.txt')
+      )
+    }
+  }
+}
+
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), copyLastUpdate()],
   base: '/devops_profile/', // your GitHub repo name
 })
