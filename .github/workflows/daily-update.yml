@@ -1,36 +1,38 @@
 name: Auto Update and Deploy
 
 on:
-  schedule:
-    - cron: "0 5 * * *" # runs daily at 10:30 AM IST
-  workflow_dispatch:
+    schedule:
+        - cron: "0 5 * * *" # runs daily at 10:30 AM IST
+    workflow_dispatch:
 
 jobs:
-  auto-update:
-    runs-on: ubuntu-latest
+    auto-update:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Clean old gh-pages cache
-        run: |
-          rm -rf node_modules/.cache/gh-pages
-          rm -f .gitmodules
+            - name: Clean old gh-pages cache
+              run: |
+                  rm -rf node_modules/.cache/gh-pages
+                  rm -f .gitmodules
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 18
 
-      - name: Install dependencies
-        run: npm ci
+            - name: Install dependencies
+              run: npm ci
 
-      - name: Build project
-        run: npm run build
+            - name: Build project
+              run: npm run build
 
-      - name: Deploy to GitHub Pages
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm run deploy
+            - name: Deploy to GitHub Pages
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  npx gh-pages -d dist -u "github-actions[bot] <github-actions[bot]@users.noreply.github.com>" -r https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}.git
