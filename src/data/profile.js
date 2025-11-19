@@ -13,7 +13,26 @@ export const summary = `Results-driven Senior DevOps Engineer with 10 years of p
 
 
 export const skills = [
-    { group: 'Cloud', items: ['AWS'] },
+    { 
+    group: 'Cloud', 
+    items: [
+      'AWS', 
+      'EC2', 
+      'S3', 
+      'CloudFront', 
+      'IAM', 
+      'VPC', 
+      'Route 53', 
+      'Lambda', 
+      'DynamoDB', 
+      'API Gateway', 
+      'Cognito', 
+      'Amplify', 
+      'ECR', 
+      'EKS', 
+      'OpenSearch'
+    ] 
+  },
     { group: 'CI/CD', items: ['Jenkins', 'GitHub Actions', 'GitLab', 'Argo CD'] },
     { group: 'Containers', items: ['Docker', 'Kubernetes', 'Docker Compose'] },
     { group: 'IaC & CM', items: ['Terraform', 'Ansible'] },
