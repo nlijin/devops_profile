@@ -29,8 +29,7 @@ export const skills = [
       'Cognito', 
       'Amplify', 
       'ECR', 
-      'EKS', 
-      'OpenSearch'
+      'EKS',
     ] 
   },
     { group: 'CI/CD', items: ['Jenkins', 'GitHub Actions', 'GitLab', 'Argo CD'] },
